@@ -23,6 +23,10 @@ and what you should write is the sayHi function that makes the code above work,
 // 1. Write a function called first that returns the first item of the array using a callback function
 
   // Code Here
+  function first(arr, cb){
+    return cb(arr[0]);
+  }
+
 
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -37,6 +41,9 @@ first(names, function(firstName){
 
   //Code Here
 
+  function last(arr, cb){
+    return cb(arr[arr.length-1]);
+  }
 
 
 last(names, function(lastName){
@@ -50,6 +57,9 @@ last(names, function(lastName){
 
   //Code Here
 
+function multiply(num1, num2, cb){
+  return cb(num1*num2);
+}
 
 
 multiply(4, 3, function(answer){
@@ -64,7 +74,14 @@ multiply(4, 3, function(answer){
 
   //Code Here 
 
-
+function contains(arr, name, cb){
+  if(arr.indexOf(name) != -1){
+    return cb(true);
+  }
+  else{
+    return cb(false);
+  }
+}
 
 
 contains(names, 'Colt', function(result){
@@ -82,6 +99,13 @@ contains(names, 'Colt', function(result){
 
   //Code Here
 
+function  uniq(arr, cb){
+  //pulled this fulter from stack overflow
+  arr = arr.filter( function( item, index, inputArray ) {
+    return inputArray.indexOf(item) == index;
+});
+cb(arr);
+}
 
 
 uniq(names, function(uniqArr){
@@ -92,7 +116,11 @@ uniq(names, function(uniqArr){
 // 6. Write a function called each that takes in an array of names. For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 
     //Code Here 
-
+function each(arr, cb){
+  for(var i = 0; i < arr.length; i++){
+    cb(arr[i],i);
+  }
+}
 
 
 each(names, function(item, indice){
@@ -106,7 +134,13 @@ each(names, function(item, indice){
 
 // Code here
 
-
+function getUserById(arr, id, cb){
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i].id === id){
+      cb(arr[i]);
+    }
+  }
+}
 
 var users = [
   {
